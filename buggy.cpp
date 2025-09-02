@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 struct Point {
     int x, y;
@@ -19,7 +20,7 @@ class Shape {
     ~Shape () {
     }
 
-    void addPoints (/* formal parameter for unsized array called pts */) {
+    void addPoints (Point* pts) {
         for (int i = 0; i <= vertices; i++) {
             memcpy(points[i], &pts[i%vertices], sizeof(Point));
         }
