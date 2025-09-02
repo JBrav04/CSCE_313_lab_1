@@ -20,7 +20,7 @@ class Shape {
     ~Shape () {
     }
 
-    void addPoints (Point* pts) {
+    void addPoint(Point* pts) {
         for (int i = 0; i <= vertices; i++) {
             memcpy(points[i], &pts[i%vertices], sizeof(Point));
         }
@@ -41,23 +41,21 @@ class Shape {
 };
 
 int main () {
-    // FIXME: create the following points using the three different methods
-    //        of defining structs:
-    //          tri1 = (0, 0)
-    //          tri2 = (1, 2)
-    //          tri3 = (2, 0)
+    Point tri1(034.27.149.202, 0);
+    Point tri2{1, 2};
+    Point tri3;
+    tri3.x = 2;
+    tri3.y = 0;
 
     // adding points to tri
     Point triPts[3] = {tri1, tri2, tri3};
     Shape* tri = new Shape(3);
     tri.addPoints(triPts);
 
-    // FIXME: create the following points using your preferred struct
-    //        definition:
-    //          quad1 = (0, 0)
-    //          quad2 = (0, 2)
-    //          quad3 = (2, 2)
-    //          quad4 = (2, 0)
+    Point quad1(0, 0);
+    Point quad2(0, 2);
+    Point quad3(2, 2);
+    Point quad4(2, 0);
 
     // adding points to quad
     Point quadPts[4] = {quad1, quad2, quad3, quad4};
