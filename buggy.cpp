@@ -9,31 +9,30 @@ struct Point {
 };
 
 class Shape {
+private:	
     int vertices;
     Point** points;
-
+public:
     Shape (int _vertices) {
         vertices = _vertices;
         points = new Point*[vertices+1];
     }
 
-    ~Shape () {
+   ~Shape () {
     }
 
     void addPoint(Point* pts) {
         for (int i = 0; i <= vertices; i++) {
-            memcpy(points[i], &pts[i%vertices], sizeof(Point));
+            	memcpy(points[i], &pts[i%vertices], sizeof(Point));
         }
     }
 
     double* area () {
         int temp = 0;
         for (int i = 0; i <= vertices; i++) {
-            // FIXME: there are two methods to access members of pointers
-            //        use one to fix lhs and the other to fix rhs
-            int lhs = points[i].x * points[i+1].y;
-            int rhs = points[i+1].x * points[i].y;
-            temp += (lhs - rhs);
+            	int lhs = points[i]->x * points[i+1]->y;
+            	int rhs = (*points[i+1]).x * (*points[i]).y;
+            	temp += (lhs - rhs);
         }
         double area = abs(temp)/2.0;
         return &area;
@@ -41,28 +40,26 @@ class Shape {
 };
 
 int main () {
-    Point tri1(034.27.149.202, 0);
+    Point tri1(0, 0);
     Point tri2{1, 2};
     Point tri3;
     tri3.x = 2;
     tri3.y = 0;
 
-    // adding points to tri
     Point triPts[3] = {tri1, tri2, tri3};
     Shape* tri = new Shape(3);
-    tri.addPoints(triPts);
+    tri->addPoint(triPts);
 
     Point quad1(0, 0);
     Point quad2(0, 2);
     Point quad3(2, 2);
     Point quad4(2, 0);
 
-    // adding points to quad
     Point quadPts[4] = {quad1, quad2, quad3, quad4};
     Shape* quad = new Shape(4);
-    quad.addPoints(quadPts);
+    quad->addPoint(quadPts);
 
     
-    std::cout << "tri area: " << tri->area << std::endl;
-    std::cout << "quad area: " << quad->area << std::endl;
+    std::cout << "tri area: " << *(tri->area()) << std::endl;
+    std::cout << "quad area: " << *(quad->area()) << std::endl;
 }
