@@ -62,5 +62,7 @@ int main () {
     Shape* quad = new Shape(4);
     quad.addPoints(quadPts);
 
-    // FIXME: print out area of tri and area of quad
+    
+    std::cout << "tri area: " << tri->area << std::endl;
+    std::cout << "quad area: " << quad->area << std::endl;
 }
