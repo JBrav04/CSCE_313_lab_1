@@ -9,33 +9,46 @@ struct Point {
 };
 
 class Shape {
-private:	
+
+private:
+
     int vertices;
     Point** points;
+    double* total_area;
+
 public:
+
     Shape (int _vertices) {
         vertices = _vertices;
         points = new Point*[vertices+1];
     }
 
    ~Shape () {
+
+	   for(int i = 0; i <= vertices; i++) {
+		   delete points[i];
+	   }
+
+	   delete total_area;
+	   delete[] points;
     }
 
     void addPoint(Point* pts) {
         for (int i = 0; i <= vertices; i++) {
+		points[i] = new Point();
             	memcpy(points[i], &pts[i%vertices], sizeof(Point));
         }
     }
 
     double* area () {
         int temp = 0;
-        for (int i = 0; i <= vertices; i++) {
+        for (int i = 0; i < vertices; i++) {
             	int lhs = points[i]->x * points[i+1]->y;
             	int rhs = (*points[i+1]).x * (*points[i]).y;
             	temp += (lhs - rhs);
         }
-        double area = abs(temp)/2.0;
-        return &area;
+        double* total_area = new double(abs(temp)/2.0);
+        return total_area;
     }
 };
 
